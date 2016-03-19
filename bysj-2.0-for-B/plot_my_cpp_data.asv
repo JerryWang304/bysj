@@ -1,0 +1,20 @@
+x=dlmread('c:\\opt_time.txt',' ');
+y=dlmread('c:\\tot_thr.txt',' ');
+scale = 100;
+y = y*scale;
+% 去掉最后一个0 。。。搞不懂为什么会有....txt文件里面明明没有
+y(1) = y(2)
+x(:,length(x))=[]
+y(:,length(y))=[]
+lw = 1;
+ms = 8;
+fs = 16;
+figure;
+plot(x,y,'-ro', 'LineWidth', lw, 'MarkerSize', ms, 'MarkerFaceColor', 'w');
+axis([0 14 0 11]);
+xlabel('Time','FontSize', fs, 'FontName', 'Arial');
+ylabel('Total Throughput','FontSize', fs, 'FontName', 'Arial');
+set(gca, 'FontSize', fs, 'FontName', 'Arial','YGrid','on');
+set(gcf,'position',[100 100 640 320]);
+set(gcf,'PaperPositionMode','auto');
+print('-r0','-depsc')

@@ -1,0 +1,106 @@
+% filename = 'clique_4x4_maxmin';
+%filename = 'result_knock_tm_all_new';
+%eps_filename = strcat(filename, '.eps');
+%load(strcat(filename, '.mat'));
+
+% N = 800;
+%N = 100;
+
+%d1 = perf(1:N, 1);
+%d2 = perf(1:N, 2);
+%d3 = perf(1:N, 4);
+%d4 = perf(1:N, 5);
+%d5 = perf(1:N, 7);
+%d6 = perf(1:N, 8);
+%d7 = perf(1:N, 10);
+%d8 = perf(1:N, 11);
+%d9 = perf(1:N, 13);
+%d10 = perf(1:N, 14);
+%d11 = perf(1:N, 11);
+%d12 = perf(1:N, 12);
+
+d1 = dlmread('C:\\d_2_c.txt',' ');
+d2 = dlmread('C:\\d_2_ic.txt',' ');
+d3 = dlmread('C:\\d_1_c.txt',' ');
+d4 = dlmread('C:\\d_1_ic.txt',' ');
+d5 = dlmread('C:\\d_20_c.txt',' ');
+d6 = dlmread('C:\\d_20_ic.txt',' ');
+d7 = dlmread('C:\\d_4_c.txt',' ');
+d8 = dlmread('C:\\d_4_ic.txt',' ');
+d9 = dlmread('C:\\d_6_c.txt',' ');
+d10 = dlmread('C:\\d_6_ic.txt',' ');
+d11 = dlmread('C:\\d_8_c.txt',' ');
+d12 = dlmread('C:\\d_8_ic.txt',' ');
+
+linestyle = ['--','-','-.','.'];
+color = ['r','b','g','c','m'];
+legendpos = 'Best';
+marker = ['s','o','^','v','d'];
+lw = 4.0;
+ms = 10;
+fs = 16;
+% legendkey = {'Per Flow','T=1','T=2','T=4','T=6', 'T=12'};
+% legendkey = {'N=12','N=6','N=4','N=3','N=2', 'N=1'};
+% legendkey = {'Per Flow','T=1','T=5','T=10'};
+% legendkey = {'\sigma=0.2, complete','\sigma=0.2, incomplete','\sigma=0.4, complete','\sigma=0.4, incomplete','\sigma=0.6, complete','\sigma=0.6, incomplete','\sigma=0.8, complete','\sigma=0.8, incomplete','\sigma=1.0, complete','\sigma=1.0, incomplete'};
+% legendkey = ['\sigma=0.2, complete','\sigma=0.2, incomplete'];
+% legendkey = [legendkey,'\sigma=0.4, complete','\sigma=0.4, incomplete'];
+legendkey = {'\sigma=0.2, complete','\sigma=0.2, incomplete','\sigma=1.0, complete','\sigma=1.0, incomplete','\sigma=2.0, complete','\sigma=2.0, incomplete','\sigma=4.0, complete','\sigma=4.0, incomplete','\sigma=6.0, complete','\sigma=6.0, incomplete','\sigma=8.0, complete','\sigma=8.0, incomplete'};
+
+
+[h1, stat1] = cdfplot(d1);
+% set(h1, 'LineStyle','-','color','r','LineWidth',lw, 'Marker','o','MarkerSize',4);
+set(h1, 'LineStyle','-','color','r','LineWidth',lw);
+hold on;
+[h2, stat2] = cdfplot(d2);
+set(h2, 'LineStyle','-','color','b','LineWidth',lw);
+hold on;
+[h3, stat3] = cdfplot(d3);
+set(h3, 'LineStyle','-.','color','g','LineWidth',lw);
+hold on;
+[h4, stat4] = cdfplot(d4);
+set(h4, 'LineStyle','-.','color','c','LineWidth',lw);
+hold on;
+[h5, stat5] = cdfplot(d5);
+set(h5, 'LineStyle','--','color','m','LineWidth',lw);
+hold on;
+[h6, stat6] = cdfplot(d6);
+set(h6, 'LineStyle','--','color','y','LineWidth',lw);
+hold on;
+[h7, stat7] = cdfplot(d7);
+set(h7, 'LineStyle','-','color','k','LineWidth',lw);
+hold on;
+[h8, stat8] = cdfplot(d8);
+set(h8, 'LineStyle','-','color',[0.5 0 0],'LineWidth',lw);
+hold on;
+[h9, stat9] = cdfplot(d9);
+set(h9, 'LineStyle','-.','color',[0.5 0.5 0],'LineWidth',lw);
+hold on;
+[h10, stat10] = cdfplot(d10);
+set(h10, 'LineStyle','-.','color',[0.5 0 0.5],'LineWidth',lw);
+hold on;
+[h11, stat11] = cdfplot(d11);
+set(h11, 'LineStyle','--','color',[0 0.5 0.5],'LineWidth',lw);
+hold on;
+[h12, stat12] = cdfplot(d12);
+set(h12, 'LineStyle','--','color',[0 0.5 0],'LineWidth',lw);
+%hold on;
+%[h13, stat13] = cdfplot(d13);
+%set(h13, 'LineStyle','-','color',[0 0 0.5],'LineWidth',lw);
+%hold on;
+%[h14, stat14] = cdfplot(d14);
+%set(h14, 'LineStyle','-','color',[0.5 0.5 0.5],'LineWidth',lw);
+
+
+hold off;
+title('');
+xlabel('Total Completion Time','FontSize', fs, 'FontName', 'Arial');
+ylabel('');
+legend(legendkey,'Location', 'NorthEast');
+set(gcf,'position',[100 100 640 320]);
+set(gca, 'FontSize', fs, 'FontName', 'Arial','YGrid','on');
+%set(gca, 'xscale', 'log');
+set(gcf,'PaperPositionMode','auto');
+print('-r0','-depsc', 'D_2_CDF.eps');
+% ps2pdf -dEPSCrop result_GP_per.eps
+clear;
